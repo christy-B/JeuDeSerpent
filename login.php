@@ -1,5 +1,7 @@
 <?php
+    session_start();
     function connexion(){
+        
         include('init.php');
         if (isset($_POST['connecter'])) {
             if (isset($_POST['pseudo_connect']) && isset($_POST['mdp_connect'])) {
@@ -15,7 +17,7 @@
                         $mdp_connect = hash('sha256' , $mdp_connect);
                         if ($data['mdp'] === $mdp_connect) 
                         {
-                            $_SESSION['joueur'] = $data['pseudo'];
+                            $_SESSION['user'] = $data['pseudo'];
                             header('Location:jeu.php');
                         } echo "mot de passe incorrect";
                     } else echo "pseudo inexistant";
