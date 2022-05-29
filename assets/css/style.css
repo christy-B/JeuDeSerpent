@@ -1,0 +1,42 @@
+body{
+    margin: 0;
+    background-image: url("/assets/image/bg.jpg");
+}
+.zoneJeu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    height:100vh;
+
+}
+.canvas{
+    background-color: black;
+    opacity: 0.96;
+    border-radius: 25px;
+}
+.titre{
+    text-align: center;
+}
+.reload{
+    border-style: none;
+    background-color: rgba(0, 128, 0, 0.769);
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    font-size: large;
+    color: white;
+}
+.score{
+    background-color: rgba(0, 128, 0, 0.493);
+    color: white;
+    font-size: larger;
+    height: 100px;
+    border-radius: 4px;
+    text-align: center;
+    padding-top: 10px;
+}
+.score span{
+    display: block;
+    padding-top: 20px;
+}
