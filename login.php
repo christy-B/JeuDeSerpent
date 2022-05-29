@@ -16,7 +16,7 @@
                         if ($data['mdp'] === $mdp_connect) 
                         {
                             $_SESSION['joueur'] = $data['pseudo'];
-                            header('Location:accueil.php');
+                            header('Location:jeu.php');
                         } echo "mot de passe incorrect";
                     } else echo "pseudo inexistant";
                 } else echo "veuillez renseigner toutes les informations";

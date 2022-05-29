@@ -9,10 +9,6 @@ var distanceNY = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tail
 var X = 0;
 var Y = 0;
 var score=0;
-document.getElementById('compteur').innerHTML = score;
-document.getElementById("in").value = score;
-var corpsSerpent = [];
-var tailleCorpsSerpent = 20;
 export const JeuSerpent = {
     fonctionCanvas:() =>{
         canvas = document.getElementById('canvas');
@@ -23,24 +19,15 @@ export const JeuSerpent = {
     creerSerpent:()=>{
         ctx.fillStyle = 'green';
         ctx.clearRect(0,0,canvasTaille,canvasTaille);
-        if (X !== 0 || Y !== 0 || corpsSerpent.length === 0) {
-            corpsSerpent.push({distanceX, distanceY});
-            if (corpsSerpent.length > tailleCorpsSerpent) {
-                corpsSerpent.shift();
-            }
-        }
-        
-        corpsSerpent.forEach(body => {
-            ctx.fillRect(body.distanceX, body.distanceY, tailleSerpent, tailleSerpent);
-        });
-        
+        ctx.fillRect(distanceX, distanceY, tailleSerpent, tailleSerpent);
         JeuSerpent.creerNourriture();
     },
     positionSerpent:()=>{
         distanceX += X * tailleSerpent;
         distanceY += Y * tailleSerpent;
         JeuSerpent.creerSerpent();
-        JeuSerpent.fonctionTouche();
+        JeuSerpent.fonctionPerte();
+        JeuSerpent.fonctionManger();
     },
     deplacementSerpent:()=>{
         document.addEventListener("keydown", (event)=>{
@@ -77,39 +64,24 @@ export const JeuSerpent = {
         ctx.fill();
         ctx.closePath();
     },
-    elementPerte:()=>{
-        audioPerdre.play();
-        X = 0 ;
-        Y = 0;
-        corpsSerpent=[];
-        distanceX = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tailleSerpent;
-        distanceY = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tailleSerpent;
-        document.getElementById("btn-reload").style.display = "block";
-    },
-    elementGain:()=>{
-        audioVictoire.play();
-        distanceNX = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tailleSerpent + 3;
-        distanceNY = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tailleSerpent + 3;
-        score += 5;
-        tailleCorpsSerpent += 2;
-        let nouveauScore = document.getElementById('compteur');
-        nouveauScore.innerHTML = score;
-        let inputscore = document.getElementById("in");
-        inputscore.value = score;
-    },
-    fonctionTouche:()=>{
+
+    fonctionPerte:()=>{
         if ((distanceX < 0 || distanceX > (canvasTaille - tailleSerpent)) || (distanceY < 0 || distanceY > (canvasTaille - tailleSerpent)) ) {
-            JeuSerpent.elementPerte();
-        }else if(((distanceNX - 3) === distanceX) && ((distanceNY-3) === distanceY)) {
-            JeuSerpent.elementGain();
+            audioPerdre.play();
+            X = 0 ;
+            Y = 0;
+            distanceX = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tailleSerpent;
+            distanceY = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tailleSerpent;
         }
-        for (let index = 0; index < corpsSerpent.length-1; index++) {
-            const body = corpsSerpent[index];
-            const teteSerpent = corpsSerpent[corpsSerpent.length-1];
-            if (body.distanceX == teteSerpent.distanceX && body.distanceY == teteSerpent.distanceY) {
-                JeuSerpent.elementPerte();
-                break;
-            }
+    },
+    fonctionManger:()=>{
+        if (((distanceNX - 3) === distanceX) && ((distanceNY-3) === distanceY)) {
+            audioVictoire.play();
+            distanceNX = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tailleSerpent + 3;
+            distanceNY = Math.trunc(Math.random() * (canvasTaille/tailleSerpent)) * tailleSerpent + 3;
+            score += 5;
+            let nouveauScore = document.getElementById('compteur');
+            nouveauScore.innerHTML = score;
         }
     },
     fonctionMedia:()=>{
