@@ -1,5 +1,6 @@
 <?php
     include('classement.php');
+    verification();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +13,8 @@
 </head>
 <body>
     <div class="zoneJeu">
-        <div>
-            <h1>
+        <div class="rang">
+            <h1>classement</h1>
         </div>
         <canvas id="canvas" class="canvas"></canvas>
         <form action="" method="post" id="reload">
@@ -28,11 +29,17 @@
         </div>
     </div>
     <style>
+        .rang{
+    background-color: red;
+    width:200px;
+    height: 480px;
+    color: white;
+}
         body{
             margin: 0;
             background-image: url("assets/image/bg.jpg");
             background-size: cover;
-}
+        }
     </style>
 
     <script type="module" src="assets/js/main.js"></script>

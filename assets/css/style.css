@@ -84,3 +84,10 @@ a{
 #in{
     display: none;
 }
+.rang{
+    background-color: red;
+    width:250px;
+    height: 480px;
+    color: white;
+    text-align: center;
+}

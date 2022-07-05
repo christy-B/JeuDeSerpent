@@ -1,23 +1,24 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
 --
--- Client :  127.0.0.1
--- Généré le :  Dim 29 Mai 2022 à 22:05
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mar. 05 juil. 2022 à 14:29
+-- Version du serveur : 5.7.36
+-- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `jeu`
+-- Base de données : `jeu`
 --
 
 -- --------------------------------------------------------
@@ -26,23 +27,25 @@ SET time_zone = "+00:00";
 -- Structure de la table `joueur`
 --
 
+DROP TABLE IF EXISTS `joueur`;
 CREATE TABLE IF NOT EXISTS `joueur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pseudo` varchar(100) NOT NULL,
-  `mdp` varchar(100) NOT NULL,
+  `pseudo` varchar(20) NOT NULL,
+  `mdp` varchar(20) NOT NULL,
   `score` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `joueur`
+-- Déchargement des données de la table `joueur`
 --
 
 INSERT INTO `joueur` (`id`, `pseudo`, `mdp`, `score`) VALUES
-(1, 'koro', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', ''),
-(2, 'poipoi', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', ''),
-(3, 'momo', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', ''),
-(4, 'popo', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '');
+(1, 'koro', '03ac674216f3e15c761e', '0'),
+(2, 'momo', '03ac674216f3e15c761e', '0'),
+(3, 'popo', '03ac674216f3e15c761e', '0'),
+(4, 'cricri', '03ac674216f3e15c761e', '0');
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

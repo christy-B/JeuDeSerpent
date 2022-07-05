@@ -34,7 +34,8 @@
                     $pseudo = htmlspecialchars($_POST['pseudo']);
                     $mdp = htmlspecialchars($_POST['mdp']);
                     $mdp_retype = htmlspecialchars($_POST['mdp_retype']);
-                    $check = $bdd->prepare('SELECT pseudo, mdp From joueur WHERE pseudo = ? ');
+                    $score = '0';
+                    $check = $bdd->prepare('SELECT pseudo, mdp, score From joueur WHERE pseudo = ? ');
                     $check->execute(array($pseudo));
                     $data = $check->fetch();
                     $row = $check->rowCount();
@@ -45,12 +46,13 @@
                             if ($mdp == $mdp_retype) 
                             {
                                 $mdp = hash('sha256', $mdp);
-                                $insert = $bdd->prepare('INSERT INTO joueur(pseudo, mdp) VALUES(:pseudo, :mdp)');
+                                $insert = $bdd->prepare('INSERT INTO joueur(pseudo, mdp, score) VALUES(:pseudo, :mdp, :score)');
                                 $insert->execute(array(
                                     'pseudo' => $pseudo,
-                                    'mdp' => $mdp
+                                    'mdp' => $mdp,
+                                    'score' => $score
                                 ));
-                                echo "vous ètes inscrit";
+                                echo "connecter vous maintenant";
             
                             } else echo "mots de passe differents";
                         } else echo "pseudo trop long";
